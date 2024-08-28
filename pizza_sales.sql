@@ -50,6 +50,7 @@ GROUP BY p1.name
 ORDER BY SUM(o.quantity) DESC
 LIMIT 5;
 
+
 -- Join the necessary tables to find the total quantity of each pizza category ordered.
 SELECT 
     p1.category, SUM(o.quantity) AS quantity
@@ -61,6 +62,8 @@ FROM
     order_details o ON o.pizza_id = p.pizza_id
 GROUP BY p1.category
 ORDER BY SUM(o.quantity) DESC;
+
+
 
 -- Determine the distribution of orders by hour of the day.
 SELECT 
@@ -74,6 +77,8 @@ GROUP BY HOUR(order_time);
 select category , count(name) from pizza_types_copy
 group by category;
 
+
+
 -- Group the orders by date and calculate the average number of pizzas ordered per day.
 SELECT 
     DAY(order_date) AS Date, ROUND(AVG(qty), 0) AS Avg_Count
@@ -86,6 +91,8 @@ FROM
     GROUP BY order_date) AS a
 GROUP BY DAY(order_date);
 
+
+
 -- Determine the top 3 most ordered pizza types based on revenue.
 select pizza_types_copy.name,
 sum(order_details.quantity * pizzas.price) as revenue
@@ -95,6 +102,8 @@ join order_details
 on order_details.pizza_id = pizzas.pizza_id
 group by pizza_types_copy.name 
 order by revenue desc limit 3;
+
+
 
 -- Calculate the percentage contribution of each pizza type to total revenue.
 SELECT 
@@ -117,6 +126,7 @@ GROUP BY pizza_types_copy.category
 ORDER BY revenue DESC;
 
 
+
 -- Analyze the cumulative revenue generated over time.
 select order_date,
 sum(revenue) over(order by order_date) as cum_rev
@@ -128,6 +138,8 @@ on order_details.pizza_id = pizzas.pizza_id
 join orders
 on orders.order_id=order_details.order_id
 group by orders.order_date) as sales;
+
+
 
 
 -- Determine the top 3 most ordered pizza types based on revenue for each pizza category.
