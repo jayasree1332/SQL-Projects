@@ -1,3 +1,3 @@
 # SQL-Projects
 
-Data Analysis using MYSQL workbench -  To write appropriate queries for pulling the required results. 
+Data Analysis using SQL Language -  To write appropriate queries for pulling the required results. 
